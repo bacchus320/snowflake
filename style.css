@@ -1,0 +1,304 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #020617;
+  --bg-alt: #0b1120;
+  --card: #020617;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.2);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --danger: #f97373;
+  --radius-lg: 18px;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.7);
+  --border-subtle: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 42%, #000000 100%);
+  color: var(--text-main);
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Header */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7), transparent);
+  padding: 18px 16px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+.title-group h1 {
+  font-size: 1.4rem;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.title-group p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.day-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  padding: 4px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.day-button {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.18s ease-out;
+}
+
+.day-button.active {
+  background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Main */
+
+#app {
+  flex: 1;
+  padding: 8px 12px 20px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.status {
+  margin: 6px 4px 10px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.mountain-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* Cards */
+
+.mountain-card {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.98));
+  border-radius: var(--radius-lg);
+  padding: 14px 14px 12px;
+  border: var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mountain-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(248, 250, 252, 0.06) 0, transparent 60%),
+    radial-gradient(circle at 80% 120%, rgba(56, 189, 248, 0.12) 0, transparent 55%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.mountain-card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.mountain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.mountain-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.mountain-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.badge-region {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.badge-region span {
+  opacity: 0.95;
+}
+
+.snow-score-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  justify-content: space-between;
+}
+
+/* Star rating for snowflakes */
+
+.star-rating {
+  font-size: 0.95rem;
+  color: #facc15; /* yellow stars */
+  letter-spacing: 1px;
+}
+
+.star-caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.snow-score-tag {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text-muted);
+}
+
+/* Day blocks */
+
+.day-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.day-chip {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.day-card {
+  padding: 8px 9px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.day-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.day-row span.label {
+  color: var(--text-muted);
+}
+
+.temp-highlight {
+  font-weight: 600;
+}
+
+.snow-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.chance-pill {
+  font-size: 0.75rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+/* Footer */
+
+.app-footer {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto 18px;
+  padding: 0 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.app-footer p {
+  margin: 2px 0;
+}
+
+.disclaimer {
+  font-size: 0.7rem;
+}
+
+/* Small screens */
+
+@media (max-width: 600px) {
+  .app-header {
+    align-items: flex-start;
+  }
+  .title-group h1 {
+    font-size: 1.2rem;
+  }
+  .title-group p {
+    font-size: 0.8rem;
+  }
+  .day-toggle {
+    margin-left: 0;
+  }
+}
