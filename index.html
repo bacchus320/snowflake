@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Korea Snowflake Mountains</title>
+  <meta name="description" content="Check tomorrow's snowflake (설화) conditions on famous Korean mountains at a glance." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="title-group">
+      <h1>❄ Korea Snowflake Mountains</h1>
+      <p>1–2 days ahead snowflower (설화) conditions for major peaks</p>
+    </div>
+    <div class="day-toggle">
+      <button data-day="1" class="day-button active">+1 day</button>
+      <button data-day="2" class="day-button">+2 days</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="status" class="status">Loading mountain forecasts…</section>
+    <section id="mountain-list" class="mountain-list"></section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Data via <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open‑Meteo</a> (Korea models). Times in Asia/Seoul.</p>
+    <p class="disclaimer">Approximate “snowflake score” only. Always check official weather &amp; park notices before hiking.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
